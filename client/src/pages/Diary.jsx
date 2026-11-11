@@ -13,7 +13,7 @@ const Diary = ({ refreshTrigger }) => {
       try {
         const token = localStorage.getItem("token");
 
-        const response = await fetch("http://localhost:3000/api/diary", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/diary`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -46,7 +46,7 @@ const Diary = ({ refreshTrigger }) => {
     };
 
     const response = await fetch(
-      `http://localhost:3000/api/diary/${editingEntry.id}`,
+      `${import.meta.env.VITE_API_URL}/api/diary/${editingEntry.id}`,
       {
         method: "PUT",
         headers: {

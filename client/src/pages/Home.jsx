@@ -8,7 +8,7 @@ function Home() {
   useEffect(() => {
     const fetchTrendingMovies = async () => {
       const response = await fetch(
-        "http://localhost:3000/api/movies/trending"
+        `${import.meta.env.VITE_API_URL}/api/movies/trending`
       );
       const data = await response.json();
       

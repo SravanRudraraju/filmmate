@@ -40,7 +40,7 @@ const App = () => {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:3000/api/movies/${selectedMovie.id}/diary`,
+        `${import.meta.env.VITE_API_URL}/api/movies/${selectedMovie.id}/diary`,
         {
           method: "POST",
           headers: {

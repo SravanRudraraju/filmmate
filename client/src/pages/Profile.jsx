@@ -64,7 +64,7 @@ const Profile = () => {
         alert("Image upload failed. Please try again.");
         return;
       }
-      const profileResponse = await fetch(`http://localhost:3000/api/profile`, {
+      const profileResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/profile`, {
         method: "PUT",
         headers: {
           "Content-Type": "Application/json",
@@ -92,7 +92,7 @@ const Profile = () => {
             }] : []
       )
       const favouritesResponse = await fetch(
-        "http://localhost:3000/api/profile/favourites",
+        `${import.meta.env.VITE_API_URL}/api/profile/favourites`,
         {
           method: "PUT",
           headers: {
@@ -190,7 +190,7 @@ const Profile = () => {
 
 
         const token = localStorage.getItem("token")
-        const response = await fetch(`http://localhost:3000/api/profile`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/profile`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

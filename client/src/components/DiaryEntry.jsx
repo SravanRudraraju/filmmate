@@ -31,7 +31,7 @@ const DiaryEntry = ({
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-      `http://localhost:3000/api/diary/${entryId}`,
+      `${import.meta.env.VITE_API_URL}/api/diary/${entryId}`,
       {
         method: "DELETE",
         headers: {

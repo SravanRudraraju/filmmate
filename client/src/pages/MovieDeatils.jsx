@@ -32,7 +32,7 @@ const MovieDeatils = () => {
 
   useEffect(() => {
     const fetchMovie = async () => {
-      const response = await fetch(`http://localhost:3000/api/movies/${id}`)
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${id}`)
       const data = await response.json()
       setMovie(data)
 
@@ -45,7 +45,7 @@ const MovieDeatils = () => {
       if (!isLoggedIn || !Movie) return
 
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:3000/api/movies/${Movie.id}/watchlist`,
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${Movie.id}/watchlist`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -64,7 +64,7 @@ const MovieDeatils = () => {
       if (!isLoggedIn || !Movie) return
 
       const token = localStorage.getItem("token")
-      const response = await fetch(`http://localhost:3000/api/movies/${Movie.id}/like`,
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${Movie.id}/like`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -83,7 +83,7 @@ const MovieDeatils = () => {
     const CheckWatched = async () => {
       if (!isLoggedIn || !Movie) return
       const token = localStorage.getItem("token")
-      const response = await fetch(`http://localhost:3000/api/movies/${Movie.id}/watch`,
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${Movie.id}/watch`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -102,7 +102,7 @@ const MovieDeatils = () => {
     const checkRating = async () => {
       if (!isLoggedIn || !Movie) return
       const token = localStorage.getItem("token")
-      const response = await fetch(`http://localhost:3000/api/movies/${Movie.id}/rating`,
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${Movie.id}/rating`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -186,7 +186,7 @@ const MovieDeatils = () => {
     }
 
     const token = localStorage.getItem("token")
-    const response = await fetch(`http://localhost:3000/api/movies/${Movie.id}/watchlist`,
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${Movie.id}/watchlist`,
       {
         method: watchlisted ? "DELETE" : "POST",
         headers: {
@@ -210,7 +210,7 @@ const MovieDeatils = () => {
     }
     const token = localStorage.getItem("token")
 
-    const response = await fetch(`http://localhost:3000/api/movies/${Movie.id}/like`,
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${Movie.id}/like`,
       {
         method: liked ? "DELETE" : "POST",
         headers: {
@@ -232,7 +232,7 @@ const MovieDeatils = () => {
       return
     }
     const token = localStorage.getItem("token")
-    const response = await fetch(`http://localhost:3000/api/movies/${Movie.id}/watch`,
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${Movie.id}/watch`,
       {
         method: watched ? "DELETE" : "POST",
         headers: {
@@ -260,7 +260,7 @@ const MovieDeatils = () => {
       return
     }
     const token = localStorage.getItem("token")
-    const response = await fetch(`http://localhost:3000/api/movies/${Movie.id}/rating`,
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${Movie.id}/rating`,
       {
         method: "PUT",
         headers: {
@@ -288,7 +288,7 @@ const MovieDeatils = () => {
 
     const token = localStorage.getItem("token")
 
-    const response = await fetch(`http://localhost:3000/api/movies/${Movie.id}/rating`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${Movie.id}/rating`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`
@@ -310,7 +310,7 @@ const MovieDeatils = () => {
       return
     }
     const token = localStorage.getItem("token")
-    const response = await fetch(`http://localhost:3000/api/movies/${Movie.id}/diary`,
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/${Movie.id}/diary`,
       {
         method: "POST",
         headers: {

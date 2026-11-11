@@ -12,7 +12,7 @@ const LikedMovies = () => {
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-          "http://localhost:3000/api/liked/movies",
+          `${import.meta.env.VITE_API_URL}/api/liked/movies`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

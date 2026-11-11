@@ -10,7 +10,7 @@ const Search = () => {
 
   useEffect(()=>{
     const fetchMovies = async () =>{
-      const response = await fetch(`http://localhost:3000/api/movies/search?query=${query}`)
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/movies/search?query=${query}`)
 
       const data = await response.json()
       
