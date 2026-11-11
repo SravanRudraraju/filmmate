@@ -3,7 +3,7 @@ import Home from './pages/Home'
 import { Routes, Route, useNavigate } from "react-router-dom"
 import Profile from './pages/Profile'
 import MovieDeatils from './pages/MovieDeatils'
-import Watchlist from './pages/watchlist'
+import Watchlist from './pages/Watchlist'
 import Diary from './pages/Diary'
 import Search from './pages/Search'
 import Navbar from './components/Navbar'
