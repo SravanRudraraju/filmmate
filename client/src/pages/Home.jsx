@@ -11,7 +11,7 @@ function Home() {
         "http://localhost:3000/api/movies/trending"
       );
       const data = await response.json();
-      console.log("trending ", data);
+      
       setTrendingMovies(data.results);
     };
 

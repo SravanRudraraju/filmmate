@@ -304,7 +304,7 @@ const MovieDeatils = () => {
     }
   }
 
-  const handleDiaryEntry = async (watchedDate, rating, liked,review) =>{
+  const handleDiaryEntry = async (watchedDate, rating, liked, review) => {
     if (!isLoggedIn) {
       navigate("/login")
       return
@@ -318,10 +318,10 @@ const MovieDeatils = () => {
           Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
-          watched_on : watchedDate,
-          rating: rating >0 ? rating : null,
-          liked : liked,
-          review : review
+          watched_on: watchedDate,
+          rating: rating > 0 ? rating : null,
+          liked: liked,
+          review: review
         })
       }
     )
@@ -329,8 +329,8 @@ const MovieDeatils = () => {
       setWatched(true)
       setWatchlisted(false)
       setLiked(liked)
-      if(rating>0){
-        setRating(rating  )
+      if (rating > 0) {
+        setRating(rating)
       }
       setDiaryOpen(false)
 
@@ -430,42 +430,80 @@ const MovieDeatils = () => {
           </div>
         </div>
 
+
         {/* action bar */}
-        <div className='mx-auto mt-8 grid w-full grid-cols-3 gap-3 rounded-2xl border border-white/10 bg-black/30 px-3 py-4 backdrop-blur-md sm:mt-10 sm:gap-4 sm:px-5 sm:py-5 md:grid-cols-6 md:gap-2 md:px-4 lg:w-[90%] xl:w-[70%] xl:px-8'>
+        <div className="mx-auto mt-8 grid w-full grid-cols-3 gap-3 rounded-2xl border border-white/10 bg-black/30 px-3 py-4 backdrop-blur-md sm:mt-10 sm:grid-cols-6 sm:gap-2 sm:px-5 sm:py-5 lg:w-[90%] xl:w-[70%] xl:px-8">
 
-          <button className="group flex min-w-0 flex-col items-center justify-center gap-2 text-center text-white/60 transition duration-200 hover:text-white"
-            onClick={handleWatchedMovies}>
-            <span className='text-4xl transition-transform duration-200 group-hover:scale-110'>  {watched ? <FaEye className='text-green-700' /> : <FaRegEye />} </span>
-            <span className='text-base'>{watched ? "WATCHED" : "WATCH"}</span>
+          {/* WATCH */}
+          <button
+            className="flex w-full min-w-0 flex-col items-center justify-center gap-2 text-center text-white/60 transition duration-200 hover:text-white"
+            onClick={handleWatchedMovies}
+          >
+            <span className="text-4xl transition-transform duration-200 hover:scale-110">
+              {watched ? (
+                <FaEye className="text-green-700" />
+              ) : (
+                <FaRegEye />
+              )}
+            </span>
+            <span className="text-sm sm:text-base">
+              {watched ? "WATCHED" : "WATCH"}
+            </span>
           </button>
 
-          <button className="group flex min-w-0 flex-col items-center justify-center gap-2 text-center text-white/60 transition duration-200 hover:text-white"
-            onClick={handleLikedMovies}>
-            <span className='text-4xl transition-transform duration-200 group-hover:scale-110'> {liked ? <FaHeart className='text-pink-800' /> : <FaRegHeart />}</span>
-            <span className='text-base'>{liked ? "LIKED" : "LIKE"}</span>
-
+          {/* LIKE */}
+          <button
+            className="flex w-full min-w-0 flex-col items-center justify-center gap-2 text-center text-white/60 transition duration-200 hover:text-white"
+            onClick={handleLikedMovies}
+          >
+            <span className="text-4xl transition-transform duration-200 hover:scale-110">
+              {liked ? (
+                <FaHeart className="text-pink-800" />
+              ) : (
+                <FaRegHeart />
+              )}
+            </span>
+            <span className="text-sm sm:text-base">
+              {liked ? "LIKED" : "LIKE"}
+            </span>
           </button>
 
-          <div className="relative">
-            <button className="group flex min-w-0 flex-col items-center justify-center gap-2 text-center text-white/60 transition duration-200 hover:text-white"
+          {/* RATE */}
+          <div className="relative flex w-full min-w-0 justify-center">
+            <button
+              className="flex w-full min-w-0 flex-col items-center justify-center gap-2 text-center text-white/60 transition duration-200 hover:text-white"
               onClick={() => {
                 if (!isLoggedIn) {
-                  navigate("/login")
-                  return
+                  navigate("/login");
+                  return;
                 }
-                setRatingOpen(prev => !prev)
-              }}>
-              {(rating > 0) ?
-                (<><span className='text-4xl text-amber-400 transition-transform duration-200 group-hover:scale-110'> <FaStar /></span>
-                  <span className='text-base'>RATED</span> </>) :
-                (<><span className='text-4xl transition-transform duration-200 group-hover:scale-110'> <FaRegStar /></span>
-                  <span className='text-base'>RATE</span> </>)
-              }
-
+                setRatingOpen(prev => !prev);
+              }}
+            >
+              {rating > 0 ? (
+                <>
+                  <span className="text-4xl text-amber-400 transition-transform duration-200 hover:scale-110">
+                    <FaStar />
+                  </span>
+                  <span className="text-sm sm:text-base">RATED</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-4xl transition-transform duration-200 hover:scale-110">
+                    <FaRegStar />
+                  </span>
+                  <span className="text-sm sm:text-base">RATE</span>
+                </>
+              )}
             </button>
 
-
-            <div className={`absolute bottom-full left-1/2 mb-3 -translate-x-1/2 transition-all duration-300 ease-out ${ratingOpen ? "translate-y-0 scale-100 opacity-100" : "pointer-events-none translate-y-2 scale-95 opacity-0"}`}>
+            {/* Rating popup */}
+            <div
+              className={`absolute bottom-full left-1/2 z-30 mb-3 -translate-x-1/2 transition-all duration-300 ease-out ${ratingOpen
+                  ? "translate-y-0 scale-100 opacity-100"
+                  : "pointer-events-none translate-y-2 scale-95 opacity-0"
+                }`}
+            >
               <div className="relative flex items-center gap-1 rounded-2xl border border-white/15 bg-gradient-to-br from-purple-950 via-slate-900 to-black px-4 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.55)]">
 
                 {[1, 2, 3, 4, 5].map((star) => (
@@ -486,20 +524,18 @@ const MovieDeatils = () => {
                     <button
                       className="absolute left-0 top-0 h-full w-1/2"
                       onClick={() => {
-                        setRating(star - 0.5)
-                        handleRatings(star - 0.5)
-                      }
-                      }
+                        setRating(star - 0.5);
+                        handleRatings(star - 0.5);
+                      }}
                     />
 
                     <button
                       className="absolute right-0 top-0 h-full w-1/2"
                       onClick={() => {
-                        setRating(star)
-                        handleRatings(star)
+                        setRating(star);
+                        handleRatings(star);
                       }}
                     />
-
                   </div>
                 ))}
 
@@ -511,43 +547,63 @@ const MovieDeatils = () => {
                 </button>
 
                 <div className="absolute -bottom-2 left-1/2 h-0 w-0 -translate-x-1/2 border-l-[9px] border-r-[9px] border-t-[9px] border-l-transparent border-r-transparent border-t-slate-900" />
-
               </div>
             </div>
-
           </div>
 
-
-
-          <button className="group flex min-w-0 flex-col items-center justify-center gap-2 text-center text-white/60 transition duration-200 hover:text-white"
+          {/* LOG / REVIEW */}
+          <button
+            className="flex w-full min-w-0 flex-col items-center justify-center gap-2 text-center text-white/60 transition duration-200 hover:text-white"
             onClick={() => {
               if (!isLoggedIn) {
-                navigate("/login")
-                return
+                navigate("/login");
+                return;
               }
-              setDiaryOpen(true)
-            }}>
-            <span className='text-4xl transition-transform duration-200 group-hover:scale-110'> <FaRegEdit /></span>
-            <span className='text-base'>LOG / REVIEW</span>
-
+              setDiaryOpen(true);
+            }}
+          >
+            <span className="text-4xl transition-transform duration-200 hover:scale-110">
+              <FaRegEdit />
+            </span>
+            <span className="text-sm sm:text-base">LOG / REVIEW</span>
           </button>
 
-          <button className="group flex min-w-0 flex-col items-center justify-center gap-2 text-center text-white/60 transition duration-200 hover:text-white"
-            onClick={handleWatchlist}>
-            <span className='text-4xl transition-transform duration-200 group-hover:scale-110'>{watchlisted ? <FaClock className='text-orange-400/80' /> : <FaRegClock />}</span>
-            <span className='text-base'>{watchlisted ? "IN WATCHLIST" : "WATCHLIST"}</span>
+          {/* WATCHLIST */}
+          <button
+            className="flex w-full min-w-0 flex-col items-center justify-center gap-2 text-center text-white/60 transition duration-200 hover:text-white"
+            onClick={handleWatchlist}
+          >
+            <span className="text-4xl transition-transform duration-200 hover:scale-110">
+              {watchlisted ? (
+                <FaClock className="text-orange-400/80" />
+              ) : (
+                <FaRegClock />
+              )}
+            </span>
+            <span className="text-sm sm:text-base">
+              {watchlisted ? "IN WATCHLIST" : "WATCHLIST"}
+            </span>
           </button>
 
-          <div className="group flex flex-col items-center gap-2 cursor-pointer text-white/60 transition duration-200 hover:text-white" onClick={() => {
-            if (!isLoggedIn) {
-              navigate("/login")
-              return
-            }
-          }}>
-            <button className='flex w-full flex-col items-center text-3xl transition-transform duration-200 group-hover:scale-110'><MdPlaylistAdd /></button>
-            <p className="text-xs sm:text-sm">ADD TO LISTS...</p>
-          </div>
+          {/* ADD TO LISTS */}
+          <button
+            className="flex w-full min-w-0 flex-col items-center justify-center gap-2 text-center text-white/60 transition duration-200 hover:text-white"
+            onClick={() => {
+              if (!isLoggedIn) {
+                navigate("/login");
+                return;
+              }
+              // Add list functionality here later
+            }}
+          >
+            <span className="text-4xl transition-transform duration-200 hover:scale-110">
+              <MdPlaylistAdd />
+            </span>
+            <span className="text-xs sm:text-sm">ADD TO LISTS...</span>
+          </button>
+
         </div>
+
 
         {/* cast */}
         <section className="mx-auto mt-10 max-w-7xl sm:mt-16">
@@ -632,9 +688,9 @@ const MovieDeatils = () => {
       {diaryOpen && (
         <DiaryEntry
           Movie={Movie}
-          liked = {liked}
+          liked={liked}
           onClose={() => setDiaryOpen(false)}
-          onSave = {handleDiaryEntry}
+          onSave={handleDiaryEntry}
         />
       )}
 

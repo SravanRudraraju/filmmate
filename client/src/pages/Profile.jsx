@@ -175,7 +175,6 @@ const Profile = () => {
       const data = await response.json()
 
       if (!response.ok) {
-        console.log(data)
         return null
       }
       return data.secure_url

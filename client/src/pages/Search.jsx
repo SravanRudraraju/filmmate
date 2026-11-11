@@ -13,7 +13,7 @@ const Search = () => {
       const response = await fetch(`http://localhost:3000/api/movies/search?query=${query}`)
 
       const data = await response.json()
-      console.log(data.results)
+      
       setSearchResults(data.results);
     }
     if(query){

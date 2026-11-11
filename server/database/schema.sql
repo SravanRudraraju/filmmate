@@ -13,6 +13,13 @@ ADD COLUMN location VARCHAR(100),
 ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 
+ALTER TABLE users
+ADD COLUMN is_verified BOOLEAN NOT NULL DEFAULT FALSE,
+ADD COLUMN verification_token_hash VARCHAR(64),
+ADD COLUMN verification_token_expires_at TIMESTAMP;
+
+
+
 CREATE TABLE watchlist(
     user_id INTEGER NOT NULL,
     tmdb_movie_id INTEGER NOT NULL,
