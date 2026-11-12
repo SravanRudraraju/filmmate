@@ -6,7 +6,14 @@ function Home() {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
+     console.log("API URL:", import.meta.env.VITE_API_URL);
+
+    console.log(
+    "Full URL:",
+    `${import.meta.env.VITE_API_URL}/api/movies/trending`
+  );
     const fetchTrendingMovies = async () => {
+      
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/movies/trending`
       );
