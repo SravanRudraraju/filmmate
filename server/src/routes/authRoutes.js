@@ -56,14 +56,14 @@ router.post("/register", async (req, res) => {
         const { data, error } = await resend.emails.send({
             from: process.env.EMAIL_FROM,
             to: email,
-            subject: "Verify your CineMate email",
+            subject: "Verify your FilmMate email",
             html: `
-                <h2>Welcome to CineMate!</h2>
+                <h2>Welcome to FilmMate!</h2>
                 <p>Please verify your email address by clicking the link below.</p>
                 <a href="${verificationLink}">Verify Email</a>
                 <p>This link expires in 30 minutes.</p>
              `,
-            text: `Verify your CineMate email: ${verificationLink}`
+            text: `Verify your FilmMate email: ${verificationLink}`
 
         });
         if (error) {
